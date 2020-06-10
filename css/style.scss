@@ -33,6 +33,30 @@ $tile-explored-border: #999999;
         background-color: $tile-background;
         border-color: $tile-explored-border;
       }
+      &.bomb-1 {
+        color: blue;
+      }
+      &.bomb-2 {
+        color: green;
+      }
+      &.bomb-3 {
+        color: red;
+      }
+      &.bomb-4 {
+        color: purple;
+      }
+      &.bomb-5 {
+        color: maroon;
+      }
+      &.bomb-6 {
+        color: turquoise;
+      }
+      &.bomb-7 {
+        color: black;
+      }
+      &.bomb-8 {
+        color: gray;
+      }
     }
     &.flagged {
       &::after {

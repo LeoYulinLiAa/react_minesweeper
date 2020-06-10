@@ -21,6 +21,7 @@ export default class Tile extends React.Component {
         const count = tile.adjacentBombCount();
         if (count > 0) {
           text = `${count}`;
+          klass += ` bomb-${text}`;
         }
       }
     } else {

@@ -5,10 +5,10 @@ import React from 'react';
 export default class Game extends React.Component {
   constructor(props) {
     super(props);
-    const board = new GameBoard(10, 5);
+    const board = new GameBoard(this.props.size, this.props.bombs);
     this.state = { board: board };
     this.updateGame = this.updateGame.bind(this);
-    this.restart = () => this.setState({ board: new GameBoard(10, 5) })
+    this.restart = () => this.setState({ board: new GameBoard(this.props.size, this.props.bombs) })
   }
 
   updateGame(tile, flagged) {
