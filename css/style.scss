@@ -19,6 +19,8 @@ $tile-explored-border: #999999;
     border-width: 0.2rem;
     font-weight: bold;
     font-size: 14px;
+    cursor: default;
+    user-select: none;
     &:hover {
       border-color: lighten($tile-border, 5%);
       background-color: lighten($tile-background, 5%);
