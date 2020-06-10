@@ -1,1 +1,84 @@
 @import url("https://meyerweb.com/eric/tools/css/reset/reset.css");
+@import url("https://unpkg.com/98.css");
+
+$tile-background: #c0c0c0;
+$tile-border: #efefef;
+$tile-explored-border: #999999;
+
+.grid-row {
+  display: flex;
+  flex-direction: row;
+  .tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-style: outset;
+    border-color: $tile-border;
+    border-width: 0.2rem;
+    font-weight: bold;
+    font-size: 14px;
+    &:hover {
+      border-color: lighten($tile-border, 5%);
+      background-color: lighten($tile-background, 5%);
+    }
+    &.explored {
+      border-style: solid;
+      border-color: $tile-explored-border;
+      border-width: 0.1rem;
+      &:hover {
+        background-color: $tile-background;
+        border-color: $tile-explored-border;
+      }
+    }
+    &.flagged {
+      &::after {
+        content: "🚩";
+      }
+    }
+    &.bombed {
+      @extend .explored;
+      &::after {
+        content: "💣";
+      }
+    }
+  }
+}
+
+.game {
+  display: flex;
+  justify-content: center;
+  border: 0.15rem solid #999999;
+}
+
+.window {
+  width: 512px;
+  margin: auto;
+}
+
+
+body {
+  background: #c0c0c0;
+  padding: 2rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.modal {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 200px;
+  &.show {
+    display: block;
+  }
+}
+
+.play-again {
+  justify-content: flex-end;
+}

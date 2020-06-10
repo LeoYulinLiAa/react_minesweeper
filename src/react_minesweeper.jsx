@@ -1,2 +1,8 @@
 import '../css/style.scss';
-import '98.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Game from './components/game';
+
+document.addEventListener("DOMContentLoaded", () => {
+  ReactDOM.render(<Game />, document.getElementById("game"));
+});
