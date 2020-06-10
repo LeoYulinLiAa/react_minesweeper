@@ -51,14 +51,19 @@ $tile-explored-border: #999999;
 .game {
   display: flex;
   justify-content: center;
-  border: 0.15rem solid #999999;
+  border-style: inset;
+  border-width: 0.15rem;
+  border-color: $tile-border;
 }
 
 .window {
-  width: 512px;
   margin: auto;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+}
 
 body {
   background: #c0c0c0;
