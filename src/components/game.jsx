@@ -6,9 +6,10 @@ export default class Game extends React.Component {
   constructor(props) {
     super(props);
     const board = new GameBoard(this.props.size, this.props.bombs);
-    this.state = { board: board };
+    this.state = { board: board, clock: 0 };
+    this.timer = null;
     this.updateGame = this.updateGame.bind(this);
-    this.restart = () => this.setState({ board: new GameBoard(this.props.size, this.props.bombs) })
+    this.restart = this.restart.bind(this);
   }
 
   updateGame(tile, flagged) {
@@ -17,7 +18,37 @@ export default class Game extends React.Component {
     } else {
       tile.explore();
     }
+    if (!this.timer) {
+      this.timer = setInterval(() => {
+        const time = this.state.clock;
+        this.setState({ clock: time + 1 })
+      }, 1000);
+    }
     this.setState({ board: this.state.board })
+  }
+
+  toDisplayString(number) {
+    return number.toString().padStart(3, "0");
+  }
+
+  restart() {
+    this.setState({ board: new GameBoard(this.props.size, this.props.bombs) });
+    this.setState({ clock: 0 });
+  }
+
+  stopTimer() {
+    clearInterval(this.timer);
+  }
+
+  componentWillUnmount() {
+    this.stopTimer();
+  }
+
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.state.board.lost() || this.state.board.won()) {
+      this.stopTimer();
+    }
   }
 
   render() {
@@ -32,7 +63,7 @@ export default class Game extends React.Component {
     return (
       <>
         <div className="status-bar">
-          <div className="display"><span>123</span></div>
+          <div className="display"><span>{this.toDisplayString(this.state.clock)}</span></div>
           <button>🤔</button>
           <div className="display"><span>456</span></div>
         </div>
