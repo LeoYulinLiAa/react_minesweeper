@@ -38,6 +38,7 @@ export default class Game extends React.Component {
 
   stopTimer() {
     clearInterval(this.timer);
+    this.timer = null;
   }
 
   componentWillUnmount() {
