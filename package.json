@@ -11,6 +11,7 @@
   "author": "LeoYulinLi",
   "license": "MIT",
   "dependencies": {
+    "fontsource-dseg7": "^1.0.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "redux": "^4.0.5"

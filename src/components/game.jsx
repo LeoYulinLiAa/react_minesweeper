@@ -31,23 +31,29 @@ export default class Game extends React.Component {
 
     return (
       <>
-        <Board board={this.state.board} update={this.updateGame}/>
-        <div className={`window modal ${klass}`}>
-          <div className="title-bar">
-            <div className="title-bar-text">
-              Alert
+        <div className="status-bar">
+          <div className="display"><span>123</span></div>
+          <button>🤔</button>
+          <div className="display"><span>456</span></div>
+        </div>
+        <div className="game-main">
+          <Board board={this.state.board} update={this.updateGame}/>
+          <div className={`window modal ${klass}`}>
+            <div className="title-bar">
+              <div className="title-bar-text">
+                Alert
+              </div>
+              <div className="title-bar-controls">
+                <button aria-label="Close" onClick={this.restart}></button>
+              </div>
             </div>
+            <div className="window-body">
+              {message}
+              <section className="field-row play-again">
+                <button onClick={this.restart}>Play Again</button>
+              </section>
 
-            <div className="title-bar-controls">
-              <button aria-label="Close" onClick={this.restart}></button>
             </div>
-          </div>
-          <div className="window-body">
-            {message}
-            <section className="field-row play-again">
-            <button onClick={this.restart}>Play Again</button>
-        </section>
-            
           </div>
         </div>
       </>
