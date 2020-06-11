@@ -28,7 +28,11 @@ export default class Game extends React.Component {
   }
 
   toDisplayString(number) {
-    return number.toString().padStart(3, "0");
+    if (number < 0) {
+      return `-${(-number).toString().padStart(2, "0")}`;
+    } else {
+      return number.toString().padStart(3, "0");
+    }
   }
 
   restart() {
@@ -60,13 +64,14 @@ export default class Game extends React.Component {
     let klass = '';
     if (message) klass = 'show';
 
+    const numLeft = this.state.board.numBombs - this.state.board.numFlag;
 
     return (
       <>
         <div className="status-bar">
-          <div className="display"><span>{this.toDisplayString(this.state.clock)}</span></div>
+          <div className="display"><span>{this.toDisplayString(numLeft)}</span></div>
           <button>🤔</button>
-          <div className="display"><span>456</span></div>
+          <div className="display"><span>{this.toDisplayString(this.state.clock)}</span></div>
         </div>
         <div className="game-main">
           <Board board={this.state.board} update={this.updateGame}/>
