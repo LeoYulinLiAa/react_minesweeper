@@ -49,6 +49,11 @@ export default class Game extends React.Component {
     this.stopTimer();
   }
 
+  get face() {
+    if (this.state.board.lost()) return "🤣"
+    if (this.state.board.won()) return "😎"
+    return "🤔"
+  }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.state.board.lost() || this.state.board.won()) {
@@ -70,7 +75,7 @@ export default class Game extends React.Component {
       <>
         <div className="status-bar">
           <div className="display"><span>{this.toDisplayString(numLeft)}</span></div>
-          <button>🤔</button>
+          <button>{this.face}</button>
           <div className="display"><span>{this.toDisplayString(this.state.clock)}</span></div>
         </div>
         <div className="game-main">
